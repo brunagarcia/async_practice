@@ -41,27 +41,16 @@ const getPokemonSpecies = async (speciesUrl: string) => {
   return speciesArray
 }
 
-const evolvesURL = [
-  {
-    evolution_details: [Array],
-    evolves_to: [Array],
-    is_baby: false,
-    species: [Object]
-  }
-]
-
 //getEvolvesTo
 const getEvolvesTo = async (evolvesArr: Array<any>) => {
   const evolutionArray = []
   //Try to deal with whatever comes from the evolves to
   for (let evolution of evolvesArr) {
-    console.log(evolution.evolves_to())
-    // evolution.push(specie.name)
+    // console.log(evolution.evolves_to)
+    evolutionArray.push(evolution.evolves_to)
   }
   return evolutionArray
 }
-
-getEvolvesTo(evolvesURL)
 
 //mainFunction - Printar todos os pokemons bonitinhos da array
 const main = async (url: string) => {
@@ -69,14 +58,15 @@ const main = async (url: string) => {
   const mainArray = []
 
   for (let pokemon of arr) {
+    console.log(pokemon.chain.evolves_to.evolves_to)
     let tempObj = {
       'Name': pokemon.chain.species.name,
       'Type': await getPokemonSpecies(pokemon.chain.species.url),
-      'Evolves to': pokemon.chain.evolves_to
+      'Evolves to': await getEvolvesTo(pokemon.chain.evolves_to)
     }
     // console.log(tempObj)
     mainArray.push(tempObj)
   }
 }
 
-// main(charactersURL)
+main(charactersURL)
