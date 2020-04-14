@@ -29,8 +29,6 @@ const getPokemonArray = async (baseUrl: string) => {
   return pokemonArray
 }
 
-const speciesURL = "https://pokeapi.co/api/v2/pokemon-species/1/"
-
 //getPokemonSpecies
 const getPokemonSpecies = async (speciesUrl: string) => {
   const species = await fetchPokemonAPI(speciesUrl)
