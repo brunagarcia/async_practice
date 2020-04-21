@@ -40,14 +40,9 @@ const getPokemonSpecies = async (speciesUrl: string) => {
 }
 
 //getEvolvesTo
-const getEvolvesTo = async (evolvesArr: Array<any>) => {
-  const evolutionArray = []
-  //Try to deal with whatever comes from the evolves to
-  for (let evolution of evolvesArr) {
-    // console.log(evolution.evolves_to)
-    evolutionArray.push(evolution.evolves_to)
-  }
-  return evolutionArray
+const getEvolvesTo = (evolvesArr: Array<any>) => {
+  return evolvesArr.map(({ species }) => species.name)
+  //Modify 
 }
 
 //mainFunction - Printar todos os pokemons bonitinhos da array
@@ -56,13 +51,12 @@ const main = async (url: string) => {
   const mainArray = []
 
   for (let pokemon of arr) {
-    console.log(pokemon.chain.evolves_to.evolves_to)
     let tempObj = {
       'Name': pokemon.chain.species.name,
       'Type': await getPokemonSpecies(pokemon.chain.species.url),
-      'Evolves to': await getEvolvesTo(pokemon.chain.evolves_to)
+      'EvolvesTo': getEvolvesTo(pokemon.chain.evolves_to)
     }
-    // console.log(tempObj)
+    console.log(tempObj)
     mainArray.push(tempObj)
   }
 }
