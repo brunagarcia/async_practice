@@ -10,15 +10,20 @@ const PageWrapper = styled.div`
 `;
 
 const HeaderBanner = styled.header`
-  position: absolute;
-  background-image: url(require("../../public/static/banner.png"));
+  top: 0px;
+  position: sticky;
+  height: 350px;
+  width: 100%;
+  background-size: cover;
+  background-image: url("/banner.png");
+  background-repeat: no-repeat;
 `;
 
 export default function Main() {
   return (
     <PageWrapper>
       {/* Styled Component */}
-      <HeaderBanner></HeaderBanner>
+      <HeaderBanner />
       {/* Component holding form and instructions */}
       <Content></Content>
     </PageWrapper>
